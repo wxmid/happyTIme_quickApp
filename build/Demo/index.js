@@ -78,77 +78,41 @@
 	  ],
 	  "children": [
 	    {
-	      "type": "list",
+	      "type": "div",
 	      "attr": {},
 	      "classList": [
-	        "tutorial-page"
+	        "header"
 	      ],
-	      "events": {
-	        "scrollbottom": "loadMoreData"
-	      },
 	      "children": [
 	        {
-	          "type": "block",
+	          "type": "swiper",
 	          "attr": {},
-	          "repeat": function () {return this.newEvents},
 	          "children": [
 	            {
-	              "type": "list-item",
-	              "attr": {
-	                "type": "productLeft"
-	              },
-	              "classList": [
-	                "content-item"
-	              ],
+	              "type": "block",
+	              "attr": {},
+	              "repeat": function () {return this.newEvents},
 	              "children": [
-	                {
-	                  "type": "image",
-	                  "attr": {
-	                    "src": function () {return this.$item.imgurl}
-	                  },
-	                  "classList": [
-	                    "events-swiper"
-	                  ]
-	                },
 	                {
 	                  "type": "div",
 	                  "attr": {},
 	                  "classList": [
-	                    "text-wrap"
+	                    "swiper-item"
 	                  ],
 	                  "children": [
 	                    {
-	                      "type": "text",
+	                      "type": "image",
 	                      "attr": {
-	                        "value": function () {return this.$item.title}
+	                        "src": function () {return this.$item.imgurl}
 	                      },
 	                      "classList": [
-	                        "text-name"
+	                        "events-swiper"
 	                      ]
 	                    }
 	                  ]
 	                }
 	              ]
 	            }
-	          ]
-	        }
-	      ]
-	    },
-	    {
-	      "type": "div",
-	      "attr": {},
-	      "classList": [
-	        "tutorial-row"
-	      ],
-	      "repeat": function () {return this.newEvents},
-	      "children": [
-	        {
-	          "type": "image",
-	          "attr": {
-	            "src": function () {return this.$item.imgurl}
-	          },
-	          "classList": [
-	            "events-swiper"
 	          ]
 	        }
 	      ]
@@ -184,9 +148,49 @@
 
 	module.exports = {
 	  ".demo-page": {
-	    "flexDirection": "column",
+	    "flexDirection": "row",
+	    "flexWrap": "wrap",
 	    "justifyContent": "center",
-	    "alignItems": "center"
+	    "width": "100%",
+	    "paddingTop": "0px",
+	    "paddingRight": "0px",
+	    "paddingBottom": "0px",
+	    "paddingLeft": "0px",
+	    "marginTop": "0px",
+	    "marginRight": "0px",
+	    "marginBottom": "0px",
+	    "marginLeft": "0px"
+	  },
+	  ".header": {
+	    "width": "100%",
+	    "display": "flex",
+	    "justyfyContent": "center"
+	  },
+	  ".header swiper": {
+	    "width": "100%",
+	    "height": "240px",
+	    "_meta": {
+	      "ruleDef": [
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "header"
+	        },
+	        {
+	          "t": "d"
+	        },
+	        {
+	          "t": "t",
+	          "n": "swiper"
+	        }
+	      ]
+	    }
+	  },
+	  ".swiper-item": {
+	    "width": "100%",
+	    "height": "240px"
 	  },
 	  ".events-swiper": {
 	    "width": "100%",

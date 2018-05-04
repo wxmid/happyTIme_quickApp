@@ -1,26 +1,29 @@
 <template>
   <!-- template里只能有一个根节点 -->
   <div class="demo-page">
-    <!--<swiper>-->
-      <!--<block for="{{newEvents}}">
-          <image class="events-swiper" src="{{{$item.imgurl}}"></image>
-      </block>-->
-    <!--</swiper>-->
-  <list class="tutorial-page" onscrollbottom="loadMoreData">
-      <block for="{{newEvents}}">
-          <!-- 图片在左，文字在右的list-item，type属性自定义命名为productLeft -->
-          <list-item type="productLeft" class="content-item">
-              <image class="events-swiper" src="{{$item.imgurl}}"></image>
-              <div class="text-wrap">
-                  <text class="text-name">{{$item.title}}</text>
-              </div>
-          </list-item>
-      </block>
-  </list>
-      
-      <div class="tutorial-row" for="{{newEvents}}">
-          <image class="events-swiper" src="{{$item.imgurl}}"></image>
+      <div class="header">
+          <swiper>
+              <block for="{{newEvents}}">
+                  <div class="swiper-item">
+                      <image class="events-swiper" src="{{$item.imgurl}}"></image>
+                  </div>
+              </block>
+          </swiper>
       </div>
+  
+      <!--<list class="tutorial-page" onscrollbottom="loadMoreData">
+          <block for="{{newEvents}}">
+              &lt;!&ndash; 图片在左，文字在右的list-item，type属性自定义命名为productLeft &ndash;&gt;
+              <list-item type="productLeft" class="content-item">
+                  <image class="events-swiper" src="{{$item.imgurl}}"></image>
+                  <div class="text-wrap">
+                      <text class="text-name">{{$item.title}}</text>
+                  </div>
+              </list-item>
+          </block>
+      </list>-->
+
+    
       
     <text class="title">欢迎打开{{title}}</text>
     <!-- 点击跳转详情页 -->
@@ -30,14 +33,31 @@
 
 <style>
   .demo-page {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-content:center;
+    width:100%;
+    padding: 0;
+    margin:0;
+  }
+  .header {
+      width: 100%;
+      display: flex;
+      justyfy-content:center;
+  }
+  .header swiper {
+      width: 100%;
+      height:240px
+  }
+  .swiper-item {
+      width:100%;
+      height:240px;
   }
   .events-swiper {
       width:100%;
       height:240px;
   }
+ 
   .title {
     font-size: 40px;
     text-align: center;
