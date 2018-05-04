@@ -106,7 +106,7 @@
 	                        "src": function () {return this.$item.imgurl}
 	                      },
 	                      "classList": [
-	                        "events-swiper"
+	                        "swiper-img"
 	                      ]
 	                    }
 	                  ]
@@ -118,26 +118,79 @@
 	      ]
 	    },
 	    {
-	      "type": "text",
-	      "attr": {
-	        "value": function () {return '欢迎打开' + (this.title)}
-	      },
+	      "type": "div",
+	      "attr": {},
 	      "classList": [
-	        "title"
-	      ]
-	    },
-	    {
-	      "type": "input",
-	      "attr": {
-	        "type": "button",
-	        "value": "跳转到详情页"
-	      },
-	      "classList": [
-	        "btn"
+	        "centainer"
 	      ],
-	      "events": {
-	        "click": "routeDetail"
-	      }
+	      "children": [
+	        {
+	          "type": "list",
+	          "attr": {},
+	          "classList": [
+	            "publish-list"
+	          ],
+	          "events": {
+	            "scrollbottom": "loadMoreData"
+	          },
+	          "children": [
+	            {
+	              "type": "block",
+	              "attr": {},
+	              "repeat": function () {return this.funnyList},
+	              "children": [
+	                {
+	                  "type": "list-item",
+	                  "attr": {
+	                    "type": "productLeft"
+	                  },
+	                  "classList": [
+	                    "publish-list-item"
+	                  ],
+	                  "children": [
+	                    {
+	                      "type": "div",
+	                      "attr": {},
+	                      "classList": [
+	                        "publish"
+	                      ],
+	                      "children": [
+	                        {
+	                          "type": "div",
+	                          "attr": {},
+	                          "classList": [
+	                            "publish-head"
+	                          ],
+	                          "children": [
+	                            {
+	                              "type": "image",
+	                              "attr": {
+	                                "src": function () {return this.$item.headImg}
+	                              },
+	                              "classList": [
+	                                "publisher-head"
+	                              ]
+	                            },
+	                            {
+	                              "type": "text",
+	                              "attr": {
+	                                "value": function () {return this.$item.title}
+	                              },
+	                              "classList": [
+	                                "publish-title"
+	                              ]
+	                            }
+	                          ]
+	                        }
+	                      ]
+	                    }
+	                  ]
+	                }
+	              ]
+	            }
+	          ]
+	        }
+	      ]
 	    }
 	  ]
 	}
@@ -148,9 +201,10 @@
 
 	module.exports = {
 	  ".demo-page": {
-	    "flexDirection": "row",
-	    "flexWrap": "wrap",
-	    "justifyContent": "center",
+	    "display": "flex",
+	    "flexDirection": "column",
+	    "flexWrap": "nowrap",
+	    "justifyContent": "flex-start",
 	    "width": "100%",
 	    "paddingTop": "0px",
 	    "paddingRight": "0px",
@@ -162,12 +216,10 @@
 	    "marginLeft": "0px"
 	  },
 	  ".header": {
-	    "width": "100%",
-	    "display": "flex",
-	    "justyfyContent": "center"
+	    "width": "100%"
 	  },
 	  ".header swiper": {
-	    "width": "100%",
+	    "width": "750px",
 	    "height": "240px",
 	    "_meta": {
 	      "ruleDef": [
@@ -189,16 +241,28 @@
 	    }
 	  },
 	  ".swiper-item": {
-	    "width": "100%",
+	    "width": "750px",
 	    "height": "240px"
 	  },
-	  ".events-swiper": {
-	    "width": "100%",
+	  ".swiper-img": {
+	    "width": "750px",
 	    "height": "240px"
 	  },
-	  ".title": {
-	    "fontSize": "40px",
-	    "textAlign": "center"
+	  ".swiper-title": {
+	    "width": "100%",
+	    "bottom": "10px",
+	    "left": "20px",
+	    "zIndex": 1,
+	    "color": "#ffffff"
+	  },
+	  ".centainer": {
+	    "width": "100%"
+	  },
+	  ".publish-list": {
+	    "width": "100%"
+	  },
+	  "publish-list-item": {
+	    "width": "100%"
 	  },
 	  ".btn": {
 	    "width": "550px",
@@ -218,7 +282,7 @@
 	module.exports = function(module, exports, $app_require$){'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 	
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -230,30 +294,79 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = {
-	  private: {
-	    title: '示例页面',
-	    newEvents: [{
-	      id: 'sp0001',
-	      imgurl: "/Common/images/swiper1.jpg",
-	      title: "哈哈哈哈，这是啥..."
-	    }, {
-	      id: 'sp0002',
-	      imgurl: "/Common/images/swiper2.jpg",
-	      title: "别人家的..."
-	    }, {
-	      id: 'sp0003',
-	      imgurl: "https://raw.githubusercontent.com/wxmid/happyTime/master/assets/img/swiper3.jpg",
-	      title: "是不是有点冷..."
-	    }]
-	  },
-	  routeDetail: function routeDetail() {
-	    _system2.default.push({
-	      uri: '/DemoDetail'
-	    });
-	  },
-	  onReady: function onReady() {
-	    this.title = '首页';
-	  }
+	    private: {
+	        title: '示例页面',
+	        newEvents: [{
+	            id: 'sp0001',
+	            imgurl: "/Common/images/swiper1.jpg",
+	            title: "哈哈哈哈，这是啥..."
+	        }, {
+	            id: 'sp0002',
+	            imgurl: "/Common/images/swiper2.jpg",
+	            title: "别人家的..."
+	        }, {
+	            id: 'sp0003',
+	            imgurl: "https://raw.githubusercontent.com/wxmid/happyTime/master/assets/img/swiper3.jpg",
+	            title: "是不是有点冷..."
+	        }],
+	        funnyList: [{
+	            id: 'fn0001',
+	            isOriginal: true,
+	            headImg: '../../assets/img/head1.jpg',
+	            nickName: 'GirlLog',
+	            publishTime: '2018-04-19 10:52',
+	            abstract: '老婆不喜欢家里的画眉鸟，所以平时鸟笼挂在阳台上，她不在家时我就拿进屋里逗一下。刚刚在家逗鸟，看到她下班回来了，我很自觉的把鸟笼拿去阳台，然后她说：“留意你很久了，每次我到家你就往阳台挂鸟笼，给谁发信号呢？！”我。。。',
+	            thumbnailList: ['../../assets/img/gx1.jpg', '../../assets/img/gx2.jpg', '../../assets/img/gx3.jpg']
+	        }, {
+	            id: 'fn0002',
+	            isOriginal: false,
+	            headImg: '',
+	            nickName: '开心一刻',
+	            publishTime: '2018-04-10 19:46',
+	            abstract: '老爸给老妈买了一个特别好看的项链，我羡慕的不要不要的，一直夸赞项链好看。老妈说道：“虽然好看，你也不要买，这东西不适合你。”我问道：“怎么不适合我？”老妈答：“太贵，你买了你老公会骂你的。”',
+	            thumbnailList: ['../../assets/img/gx7.jpg', '../../assets/img/gx5.jpg']
+	        }, {
+	            id: 'fn0003',
+	            isOriginal: false,
+	            headImg: '',
+	            nickName: '开心一刻',
+	            publishTime: '2018-04-10 19:46',
+	            abstract: '门庭若市：门，脑门；庭，天庭，额头。形容人的脑门大得就像市场一样，宽阔无边，也就是平常所说的发际线后移。',
+	            thumbnailList: ['../../assets/img/gx6.jpg']
+	        }, {
+	            id: 'fn0004',
+	            isOriginal: true,
+	            headImg: '../../assets/img/head2.jpg',
+	            nickName: 'MR.Mercury',
+	            publishTime: '2018-04-10 19:46',
+	            abstract: '今天跟一个熟客小姐姐按摩时聊天。聊着聊着她问我是不是单身？ 我说是。她又问我想不想找女友。刚准备说想，看到她左手上的婚戒，这尼玛是送命题啊。然后她说本来打算介绍一个闺蜜给我，既然不想就算了。。。',
+	            thumbnailList: ['../../assets/img/gx7.jpg', '../../assets/img/gx8.jpg', '../../assets/img/gx9.jpg', '../../assets/img/gx10.jpg']
+	        }, {
+	            id: 'fn0005',
+	            isOriginal: true,
+	            headImg: '../../assets/img/head3.jpg',
+	            nickName: 'O°MyへLove',
+	            publishTime: '2018-04-18 23:58',
+	            abstract: '小王半夜找到他的铁哥们儿：哥，快来，我老婆给我带绿帽了，打一个人。这哥们儿来句：这时候你还有心情猜灯谜？！',
+	            thumbnailList: ['../../assets/img/gx11.jpg', '../../assets/img/gx12.jpg']
+	        }, {
+	            id: 'fn0006',
+	            isOriginal: false,
+	            headImg: '',
+	            nickName: '开心一刻',
+	            publishTime: '2018-04-10 19:46',
+	            abstract: '早上，我爸出差半个月回来，回到家之后就往沙发上一躺：“唉，这段时间可累死我了！回到家连杯水都没得喝！”',
+	            thumbnailList: ['../../assets/img/gx13.jpg', '../../assets/img/gx14.jpg', '../../assets/img/gx15.jpg']
+	        }]
+	    },
+	    routeDetail: function routeDetail() {
+	        _system2.default.push({
+	            uri: '/DemoDetail'
+	        });
+	    },
+	    onReady: function onReady() {
+	        this.title = '首页';
+	    }
 	};
 	
 	
@@ -261,23 +374,23 @@
 	var accessors = ['public', 'protected', 'private'];
 	
 	if (moduleOwn.data && accessors.some(function (acc) {
-	  return moduleOwn[acc];
+	    return moduleOwn[acc];
 	})) {
-	  throw new Error('页面VM对象中的属性data不可与"' + accessors.join(',') + '"同时存在，请使用private替换data名称');
+	    throw new Error('页面VM对象中的属性data不可与"' + accessors.join(',') + '"同时存在，请使用private替换data名称');
 	} else if (!moduleOwn.data) {
-	  moduleOwn.data = {};
-	  moduleOwn._descriptor = {};
-	  accessors.forEach(function (acc) {
-	    var accType = _typeof(moduleOwn[acc]);
-	    if (accType === 'object') {
-	      moduleOwn.data = Object.assign(moduleOwn.data, moduleOwn[acc]);
-	      for (var name in moduleOwn[acc]) {
-	        moduleOwn._descriptor[name] = { access: acc };
-	      }
-	    } else if (accType === 'function') {
-	      console.warn('页面VM对象中的属性' + acc + '的值不能是函数，请使用对象');
-	    }
-	  });
+	    moduleOwn.data = {};
+	    moduleOwn._descriptor = {};
+	    accessors.forEach(function (acc) {
+	        var accType = _typeof(moduleOwn[acc]);
+	        if (accType === 'object') {
+	            moduleOwn.data = Object.assign(moduleOwn.data, moduleOwn[acc]);
+	            for (var name in moduleOwn[acc]) {
+	                moduleOwn._descriptor[name] = { access: acc };
+	            }
+	        } else if (accType === 'function') {
+	            console.warn('页面VM对象中的属性' + acc + '的值不能是函数，请使用对象');
+	        }
+	    });
 	}}
 
 /***/ }
