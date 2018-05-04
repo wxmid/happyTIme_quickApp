@@ -142,20 +142,26 @@
 	
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 	
-	var _private$onReady$onMe;
-	
 	var _system = $app_require$('@app-module/system.router');
 	
 	var _system2 = _interopRequireDefault(_system);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-	
-	exports.default = (_private$onReady$onMe = {
+	exports.default = {
 	  private: {
 	    text: '欢迎打开详情页',
 	    lcList: [] },
+	  onCreate: function onCreate() {
+	    console.info('Application onCreate');
+	    console.info('\u83B7\u53D6\uFF1AAPP\u6587\u4EF6\u4E2D\u7684\u6570\u636E\uFF1A' + this.$app.$def.data1.name);
+	    console.info('\u6267\u884C\uFF1AAPP\u6587\u4EF6\u4E2D\u7684\u65B9\u6CD5', this.$app.$def.method1());
+	    console.info('\u83B7\u53D6\uFF1Amanifest.json\u7684\u5E94\u7528\u540D\u79F0\uFF1A' + this.$app.$def.manifest.name);
+	    console.info('\u83B7\u53D6\uFF1Amanifest.json\u7684config.data\u7684\u6570\u636E\uFF1A' + this.$app.$data.name);
+	  },
+	  onShow: function onShow() {
+	    var a = this.$visible;
+	  },
 	  onReady: function onReady() {
 	    this.lcList.push('onReady');
 	  },
@@ -175,16 +181,13 @@
 	    this.lcList.push('backToHome');
 	    console.info('=====+++++\u8FD4\u56DE\u4E0A\u4E00\u9875+++++=====');
 	    _system2.default.back();
+	  },
+	  onHide: function onHide() {
+	    this.lcList.push('onHide');
+	    console.info('\u89E6\u53D1\uFF1AonHide');
+	    console.info('\u6267\u884C\uFF1A\u83B7\u53D6\u9875\u9762\u663E\u793A\u72B6\u6001\u5C5E\u6027\uFF1A' + this.$visible);
 	  }
-	}, _defineProperty(_private$onReady$onMe, 'onMenuPress', function onMenuPress() {
-	  this.lcList.push('onMenuPress');
-	  console.info('\u89E6\u53D1\uFF1AonMenuPress');
-	}), _defineProperty(_private$onReady$onMe, 'onHide', function onHide() {
-	  this.lcList.push('onHide');
-	
-	  console.info('\u89E6\u53D1\uFF1AonHide');
-	  console.info('\u6267\u884C\uFF1A\u83B7\u53D6\u9875\u9762\u663E\u793A\u72B6\u6001\u5C5E\u6027\uFF1A' + this.$visible);
-	}), _private$onReady$onMe);
+	};
 	
 	
 	var moduleOwn = exports.default || module.exports;

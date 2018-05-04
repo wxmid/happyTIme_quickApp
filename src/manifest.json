@@ -14,7 +14,11 @@
     { "origin": "*" }
   ],
   "config": {
-    "logLevel": "debug"
+    "logLevel": "debug",
+    "designWidth":750,
+    "data":{
+      "name":"开心一刻data配置"
+    }
   },
   "router": {
     "entry": "Demo",
@@ -40,8 +44,7 @@
         "menu": false
       },
       "DemoDetail": {
-        "titleBarText": "详情页",
-        "menu": true
+        "titleBarText": "详情页"
       },
       "About": {
         "menu": false

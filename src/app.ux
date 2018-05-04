@@ -6,6 +6,13 @@
 
   export default {
     showMenu: util.showMenu,
-    createShortcut: util.createShortcut
+    createShortcut: util.createShortcut,
+      method1 () {
+          console.info('这是APP的方法')
+      },
+      // 暴露给所有页面，在页面中通过：this.$app.$def.data1访问
+      data1: {
+          name: '这是APP存的数据'
+      },
   }
 </script>

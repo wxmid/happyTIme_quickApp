@@ -30,7 +30,6 @@
 
 <script>
     import router from '@system.router'
-    
     export default {
     private: {
       text: '欢迎打开详情页',
@@ -40,7 +39,16 @@
      * 当用户点击菜单按钮时触发，调用app中定义的方法showMenu
      * 注意：使用加载器测试`创建桌面快捷方式`功能时，请先在`系统设置`中打开`应用加载器`的`桌面快捷方式`权限
      */
-   
+    onCreate () {
+        console.info('Application onCreate');
+        console.info(`获取：APP文件中的数据：${this.$app.$def.data1.name}`)
+        console.info(`执行：APP文件中的方法`, this.$app.$def.method1())
+        console.info(`获取：manifest.json的应用名称：${this.$app.$def.manifest.name}`)
+        console.info(`获取：manifest.json的config.data的数据：${this.$app.$data.name}`)
+    },
+   onShow () {
+       var a = this.$visible;
+    },
     onReady () {
         this.lcList.push('onReady')
     },
@@ -61,15 +69,16 @@
         this.lcList.push('backToHome')
         console.info(`=====+++++返回上一页+++++=====`);
         router.back();
-    },
+    }/*,
       onMenuPress () {
           this.lcList.push('onMenuPress')
-          console.info(`触发：onMenuPress`)
-      },
+          console.info(`触发：onMenuPress`)   //存在onMenuPress事件时，点击右上角menu按钮不会换起菜单，只会触发自定义事件
+      }*/,
       onHide () {
           this.lcList.push('onHide')
           console.info(`触发：onHide`)
           console.info(`执行：获取页面显示状态属性：${this.$visible}`)  // false
-      }
+      },
+ 
   }
 </script>

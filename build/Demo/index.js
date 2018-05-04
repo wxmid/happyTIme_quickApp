@@ -78,6 +78,82 @@
 	  ],
 	  "children": [
 	    {
+	      "type": "list",
+	      "attr": {},
+	      "classList": [
+	        "tutorial-page"
+	      ],
+	      "events": {
+	        "scrollbottom": "loadMoreData"
+	      },
+	      "children": [
+	        {
+	          "type": "block",
+	          "attr": {},
+	          "repeat": function () {return this.newEvents},
+	          "children": [
+	            {
+	              "type": "list-item",
+	              "attr": {
+	                "type": "productLeft"
+	              },
+	              "classList": [
+	                "content-item"
+	              ],
+	              "children": [
+	                {
+	                  "type": "image",
+	                  "attr": {
+	                    "src": function () {return this.$item.imgurl}
+	                  },
+	                  "classList": [
+	                    "events-swiper"
+	                  ]
+	                },
+	                {
+	                  "type": "div",
+	                  "attr": {},
+	                  "classList": [
+	                    "text-wrap"
+	                  ],
+	                  "children": [
+	                    {
+	                      "type": "text",
+	                      "attr": {
+	                        "value": function () {return this.$item.title}
+	                      },
+	                      "classList": [
+	                        "text-name"
+	                      ]
+	                    }
+	                  ]
+	                }
+	              ]
+	            }
+	          ]
+	        }
+	      ]
+	    },
+	    {
+	      "type": "div",
+	      "attr": {},
+	      "classList": [
+	        "tutorial-row"
+	      ],
+	      "repeat": function () {return this.newEvents},
+	      "children": [
+	        {
+	          "type": "image",
+	          "attr": {
+	            "src": function () {return this.$item.imgurl}
+	          },
+	          "classList": [
+	            "events-swiper"
+	          ]
+	        }
+	      ]
+	    },
+	    {
 	      "type": "text",
 	      "attr": {
 	        "value": function () {return '欢迎打开' + (this.title)}
@@ -111,6 +187,10 @@
 	    "flexDirection": "column",
 	    "justifyContent": "center",
 	    "alignItems": "center"
+	  },
+	  ".events-swiper": {
+	    "width": "100%",
+	    "height": "240px"
 	  },
 	  ".title": {
 	    "fontSize": "40px",
@@ -147,8 +227,20 @@
 	
 	exports.default = {
 	  private: {
-	    title: '示例页面'
-	
+	    title: '示例页面',
+	    newEvents: [{
+	      id: 'sp0001',
+	      imgurl: "/Common/images/swiper1.jpg",
+	      title: "哈哈哈哈，这是啥..."
+	    }, {
+	      id: 'sp0002',
+	      imgurl: "/Common/images/swiper2.jpg",
+	      title: "别人家的..."
+	    }, {
+	      id: 'sp0003',
+	      imgurl: "https://raw.githubusercontent.com/wxmid/happyTime/master/assets/img/swiper3.jpg",
+	      title: "是不是有点冷..."
+	    }]
 	  },
 	  routeDetail: function routeDetail() {
 	    _system2.default.push({
