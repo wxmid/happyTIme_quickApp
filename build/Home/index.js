@@ -47,9 +47,9 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $app_template$ = __webpack_require__(4)
-	var $app_style$ = __webpack_require__(5)
-	var $app_script$ = __webpack_require__(6)
+	var $app_template$ = __webpack_require__(7)
+	var $app_style$ = __webpack_require__(8)
+	var $app_script$ = __webpack_require__(9)
 	
 	$app_define$('@app-component/index', [], function($app_require$, $app_exports$, $app_module$){
 	     $app_script$($app_module$, $app_exports$, $app_require$)
@@ -67,7 +67,10 @@
 /* 1 */,
 /* 2 */,
 /* 3 */,
-/* 4 */
+/* 4 */,
+/* 5 */,
+/* 6 */,
+/* 7 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -121,7 +124,7 @@
 	      "type": "div",
 	      "attr": {},
 	      "classList": [
-	        "centainer"
+	        "container"
 	      ],
 	      "children": [
 	        {
@@ -141,9 +144,7 @@
 	              "children": [
 	                {
 	                  "type": "list-item",
-	                  "attr": {
-	                    "type": "productLeft"
-	                  },
+	                  "attr": {},
 	                  "classList": [
 	                    "publish-list-item"
 	                  ],
@@ -152,7 +153,7 @@
 	                      "type": "div",
 	                      "attr": {},
 	                      "classList": [
-	                        "publish"
+	                        "publish-info"
 	                      ],
 	                      "children": [
 	                        {
@@ -168,16 +169,34 @@
 	                                "src": function () {return this.$item.headImg}
 	                              },
 	                              "classList": [
-	                                "publisher-head"
+	                                "publisher-head-img"
+	                              ]
+	                            }
+	                          ]
+	                        },
+	                        {
+	                          "type": "div",
+	                          "attr": {},
+	                          "classList": [
+	                            "base-info"
+	                          ],
+	                          "children": [
+	                            {
+	                              "type": "text",
+	                              "attr": {
+	                                "value": function () {return this.$item.nickName}
+	                              },
+	                              "classList": [
+	                                "nickName"
 	                              ]
 	                            },
 	                            {
 	                              "type": "text",
 	                              "attr": {
-	                                "value": function () {return this.$item.title}
+	                                "value": function () {return this.$item.publishTime}
 	                              },
 	                              "classList": [
-	                                "publish-title"
+	                                "publish-time"
 	                              ]
 	                            }
 	                          ]
@@ -196,16 +215,17 @@
 	}
 
 /***/ },
-/* 5 */
+/* 8 */
 /***/ function(module, exports) {
 
 	module.exports = {
 	  ".demo-page": {
-	    "display": "flex",
 	    "flexDirection": "column",
 	    "flexWrap": "nowrap",
 	    "justifyContent": "flex-start",
-	    "width": "100%",
+	    "backgroundColor": "rgba(189,189,189,0.52)"
+	  },
+	  ".header": {
 	    "paddingTop": "0px",
 	    "paddingRight": "0px",
 	    "paddingBottom": "0px",
@@ -213,9 +233,7 @@
 	    "marginTop": "0px",
 	    "marginRight": "0px",
 	    "marginBottom": "0px",
-	    "marginLeft": "0px"
-	  },
-	  ".header": {
+	    "marginLeft": "0px",
 	    "width": "100%"
 	  },
 	  ".header swiper": {
@@ -253,16 +271,105 @@
 	    "bottom": "10px",
 	    "left": "20px",
 	    "zIndex": 1,
-	    "color": "#ffffff"
+	    "color": "#000000"
 	  },
-	  ".centainer": {
+	  ".container": {
+	    "paddingTop": "0px",
+	    "paddingRight": "0px",
+	    "paddingBottom": "0px",
+	    "paddingLeft": "0px",
+	    "marginTop": "0px",
+	    "marginRight": "0px",
+	    "marginBottom": "0px",
+	    "marginLeft": "0px",
+	    "width": "100%"
+	  },
+	  ".publish-list-item": {
+	    "paddingTop": "10px",
+	    "paddingRight": "20px",
+	    "paddingBottom": "10px",
+	    "paddingLeft": "20px",
+	    "marginTop": "14px",
+	    "marginRight": "0px",
+	    "marginBottom": "0px",
+	    "marginLeft": "0px",
+	    "width": "100%",
+	    "backgroundColor": "#ffffff"
+	  },
+	  ".publish-info": {
+	    "paddingTop": "0px",
+	    "paddingRight": "0px",
+	    "paddingBottom": "0px",
+	    "paddingLeft": "0px",
+	    "marginTop": "0px",
+	    "marginRight": "0px",
+	    "marginBottom": "0px",
+	    "marginLeft": "0px",
 	    "width": "100%"
 	  },
 	  ".publish-list": {
-	    "width": "100%"
+	    "height": "100%"
 	  },
-	  "publish-list-item": {
-	    "width": "100%"
+	  ".publisher-info": {
+	    "height": "100px",
+	    "boxSizing": "border-box",
+	    "display": "flex",
+	    "flexDirection": "row"
+	  },
+	  ".publish-head": {
+	    "height": "100%",
+	    "paddingTop": "10px",
+	    "paddingRight": "20px",
+	    "paddingBottom": "10px",
+	    "paddingLeft": "0px",
+	    "boxSizing": "border-box"
+	  },
+	  ".publisher-head-img": {
+	    "width": "80px",
+	    "height": "80px",
+	    "borderRadius": "50px",
+	    "verticalAlign": "middle"
+	  },
+	  ".base-info": {
+	    "height": "100%",
+	    "width": "550px",
+	    "paddingTop": "10px",
+	    "paddingRight": "0px",
+	    "paddingBottom": "10px",
+	    "paddingLeft": "0px",
+	    "boxSizing": "border-box"
+	  },
+	  ".base-info text": {
+	    "width": "100%",
+	    "height": "100px",
+	    "lineHeight": "40px",
+	    "float": "left",
+	    "_meta": {
+	      "ruleDef": [
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "base-info"
+	        },
+	        {
+	          "t": "d"
+	        },
+	        {
+	          "t": "t",
+	          "n": "text"
+	        }
+	      ]
+	    }
+	  },
+	  ".nickName": {
+	    "fontSize": "30px",
+	    "color": "#ff6c00"
+	  },
+	  ".publish-time": {
+	    "color": "#4CAF50",
+	    "fontSize": "24px"
 	  },
 	  ".btn": {
 	    "width": "550px",
@@ -276,7 +383,7 @@
 	}
 
 /***/ },
-/* 6 */
+/* 9 */
 /***/ function(module, exports) {
 
 	module.exports = function(module, exports, $app_require$){'use strict';
@@ -312,51 +419,51 @@
 	        funnyList: [{
 	            id: 'fn0001',
 	            isOriginal: true,
-	            headImg: '../../assets/img/head1.jpg',
+	            headImg: '/Common/images/head1.jpg',
 	            nickName: 'GirlLog',
 	            publishTime: '2018-04-19 10:52',
 	            abstract: '老婆不喜欢家里的画眉鸟，所以平时鸟笼挂在阳台上，她不在家时我就拿进屋里逗一下。刚刚在家逗鸟，看到她下班回来了，我很自觉的把鸟笼拿去阳台，然后她说：“留意你很久了，每次我到家你就往阳台挂鸟笼，给谁发信号呢？！”我。。。',
-	            thumbnailList: ['../../assets/img/gx1.jpg', '../../assets/img/gx2.jpg', '../../assets/img/gx3.jpg']
+	            thumbnailList: ['/Common/images/gx1.jpg', '/Common/images/gx2.jpg', '/Common/images/gx3.jpg']
 	        }, {
 	            id: 'fn0002',
 	            isOriginal: false,
-	            headImg: '',
+	            headImg: '/Common/images/head1.jpg',
 	            nickName: '开心一刻',
 	            publishTime: '2018-04-10 19:46',
 	            abstract: '老爸给老妈买了一个特别好看的项链，我羡慕的不要不要的，一直夸赞项链好看。老妈说道：“虽然好看，你也不要买，这东西不适合你。”我问道：“怎么不适合我？”老妈答：“太贵，你买了你老公会骂你的。”',
-	            thumbnailList: ['../../assets/img/gx7.jpg', '../../assets/img/gx5.jpg']
+	            thumbnailList: ['/Common/images/gx7.jpg', '/Common/images/gx5.jpg']
 	        }, {
 	            id: 'fn0003',
 	            isOriginal: false,
-	            headImg: '',
+	            headImg: '/Common/images/head1.jpg',
 	            nickName: '开心一刻',
 	            publishTime: '2018-04-10 19:46',
 	            abstract: '门庭若市：门，脑门；庭，天庭，额头。形容人的脑门大得就像市场一样，宽阔无边，也就是平常所说的发际线后移。',
-	            thumbnailList: ['../../assets/img/gx6.jpg']
+	            thumbnailList: ['/Common/images/gx6.jpg']
 	        }, {
 	            id: 'fn0004',
 	            isOriginal: true,
-	            headImg: '../../assets/img/head2.jpg',
+	            headImg: '/Common/images/head2.jpg',
 	            nickName: 'MR.Mercury',
 	            publishTime: '2018-04-10 19:46',
 	            abstract: '今天跟一个熟客小姐姐按摩时聊天。聊着聊着她问我是不是单身？ 我说是。她又问我想不想找女友。刚准备说想，看到她左手上的婚戒，这尼玛是送命题啊。然后她说本来打算介绍一个闺蜜给我，既然不想就算了。。。',
-	            thumbnailList: ['../../assets/img/gx7.jpg', '../../assets/img/gx8.jpg', '../../assets/img/gx9.jpg', '../../assets/img/gx10.jpg']
+	            thumbnailList: ['/Common/images/gx7.jpg', '/Common/images/gx8.jpg', '/Common/images/gx9.jpg', '/Common/images/gx10.jpg']
 	        }, {
 	            id: 'fn0005',
 	            isOriginal: true,
-	            headImg: '../../assets/img/head3.jpg',
+	            headImg: '/Common/images/head3.jpg',
 	            nickName: 'O°MyへLove',
 	            publishTime: '2018-04-18 23:58',
 	            abstract: '小王半夜找到他的铁哥们儿：哥，快来，我老婆给我带绿帽了，打一个人。这哥们儿来句：这时候你还有心情猜灯谜？！',
-	            thumbnailList: ['../../assets/img/gx11.jpg', '../../assets/img/gx12.jpg']
+	            thumbnailList: ['/Common/images/gx11.jpg', '/Common/images/gx12.jpg']
 	        }, {
 	            id: 'fn0006',
 	            isOriginal: false,
-	            headImg: '',
+	            headImg: '/Common/images/head4.jpg',
 	            nickName: '开心一刻',
 	            publishTime: '2018-04-10 19:46',
 	            abstract: '早上，我爸出差半个月回来，回到家之后就往沙发上一躺：“唉，这段时间可累死我了！回到家连杯水都没得喝！”',
-	            thumbnailList: ['../../assets/img/gx13.jpg', '../../assets/img/gx14.jpg', '../../assets/img/gx15.jpg']
+	            thumbnailList: ['/Common/images/gx13.jpg', '/Common/images/gx14.jpg', '/Common/images/gx15.jpg']
 	        }]
 	    },
 	    routeDetail: function routeDetail() {
@@ -366,7 +473,8 @@
 	    },
 	    onReady: function onReady() {
 	        this.title = '首页';
-	    }
+	    },
+	    loadMoreData: function loadMoreData() {}
 	};
 	
 	

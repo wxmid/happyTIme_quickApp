@@ -4,7 +4,7 @@
   "versionName": "1.0.0",
   "versionCode": "1",
   "minPlatformVersion": "101",
-  "icon": "/Common/logo.png",
+  "icon": "/Common/images/smileHead.png",
   "features": [
     { "name": "system.prompt" },
     { "name": "system.router" },
@@ -21,9 +21,9 @@
     }
   },
   "router": {
-    "entry": "Demo",
+    "entry": "Home",
     "pages": {
-      "Demo": {
+      "Home": {
         "component": "index"
       },
       "DemoDetail": {
@@ -39,7 +39,7 @@
     "titleBarTextColor": "white",
     "menu": true,
     "pages": {
-      "Demo": {
+      "Home": {
         "titleBarText": "开心一刻",
         "menu": false
       },

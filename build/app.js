@@ -88,7 +88,7 @@
 	        name: '这是APP存的数据'
 	    }
 	};
-	(exports.default || module.exports).manifest = {"package":"com.application.happyTime","name":"开心一刻","versionName":"1.0.0","versionCode":"1","minPlatformVersion":"101","icon":"/Common/logo.png","features":[{"name":"system.prompt"},{"name":"system.router"},{"name":"system.shortcut"}],"permissions":[{"origin":"*"}],"config":{"logLevel":"debug","designWidth":750,"data":{"name":"开心一刻data配置"}},"router":{"entry":"Demo","pages":{"Demo":{"component":"index"},"DemoDetail":{"component":"index"},"About":{"component":"index"}}},"display":{"titleBarBackgroundColor":"#011e29","titleBarTextColor":"white","menu":true,"pages":{"Demo":{"titleBarText":"开心一刻","menu":false},"DemoDetail":{"titleBarText":"详情页"},"About":{"menu":false}}}};
+	(exports.default || module.exports).manifest = {"package":"com.application.happyTime","name":"开心一刻","versionName":"1.0.0","versionCode":"1","minPlatformVersion":"101","icon":"/Common/images/smileHead.png","features":[{"name":"system.prompt"},{"name":"system.router"},{"name":"system.shortcut"}],"permissions":[{"origin":"*"}],"config":{"logLevel":"debug","designWidth":750,"data":{"name":"开心一刻data配置"}},"router":{"entry":"Home","pages":{"Home":{"component":"index"},"DemoDetail":{"component":"index"},"About":{"component":"index"}}},"display":{"titleBarBackgroundColor":"#011e29","titleBarTextColor":"white","menu":true,"pages":{"Home":{"titleBarText":"开心一刻","menu":false},"DemoDetail":{"titleBarText":"详情页"},"About":{"menu":false}}}};
 	}
 
 /***/ },
@@ -184,7 +184,7 @@
   else {
     window.createAppHandler = createAppHandler
     // H5注入manifest以获取features
-    global.manifest = {"package":"com.application.happyTime","name":"开心一刻","versionName":"1.0.0","versionCode":"1","minPlatformVersion":"101","icon":"/Common/logo.png","features":[{"name":"system.prompt"},{"name":"system.router"},{"name":"system.shortcut"}],"permissions":[{"origin":"*"}],"config":{"logLevel":"debug","designWidth":750,"data":{"name":"开心一刻data配置"}},"router":{"entry":"Demo","pages":{"Demo":{"component":"index"},"DemoDetail":{"component":"index"},"About":{"component":"index"}}},"display":{"titleBarBackgroundColor":"#011e29","titleBarTextColor":"white","menu":true,"pages":{"Demo":{"titleBarText":"开心一刻","menu":false},"DemoDetail":{"titleBarText":"详情页"},"About":{"menu":false}}}};
+    global.manifest = {"package":"com.application.happyTime","name":"开心一刻","versionName":"1.0.0","versionCode":"1","minPlatformVersion":"101","icon":"/Common/images/smileHead.png","features":[{"name":"system.prompt"},{"name":"system.router"},{"name":"system.shortcut"}],"permissions":[{"origin":"*"}],"config":{"logLevel":"debug","designWidth":750,"data":{"name":"开心一刻data配置"}},"router":{"entry":"Home","pages":{"Home":{"component":"index"},"DemoDetail":{"component":"index"},"About":{"component":"index"}}},"display":{"titleBarBackgroundColor":"#011e29","titleBarTextColor":"white","menu":true,"pages":{"Home":{"titleBarText":"开心一刻","menu":false},"DemoDetail":{"titleBarText":"详情页"},"About":{"menu":false}}}};
   }
 })();
 //# sourceMappingURL=app.js.map
