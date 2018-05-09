@@ -47,6 +47,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+	__webpack_require__(16)
 	var $app_template$ = __webpack_require__(7)
 	var $app_style$ = __webpack_require__(8)
 	var $app_script$ = __webpack_require__(9)
@@ -81,129 +82,133 @@
 	  ],
 	  "children": [
 	    {
-	      "type": "div",
+	      "type": "tabs",
 	      "attr": {},
-	      "classList": [
-	        "header"
-	      ],
+	      "events": {
+	        "change": "onChangeTabIndex"
+	      },
 	      "children": [
 	        {
-	          "type": "swiper",
+	          "type": "tab-content",
 	          "attr": {},
+	          "classList": [
+	            "tab-content"
+	          ],
 	          "children": [
 	            {
-	              "type": "block",
-	              "attr": {},
-	              "repeat": function () {return this.newEvents},
+	              "type": "index-page",
+	              "attr": {
+	                "index": "0",
+	                "indexDate": function () {return this.indexDate},
+	                "currentIndex": function () {return this.currentIndex}
+	              }
+	            },
+	            {
+	              "type": "div",
+	              "attr": {
+	                "index": "1",
+	                "itemdata": function () {return this.list[1]},
+	                "currentIndex": function () {return this.currentIndex}
+	              },
 	              "children": [
 	                {
-	                  "type": "div",
-	                  "attr": {},
-	                  "classList": [
-	                    "swiper-item"
-	                  ],
-	                  "children": [
-	                    {
-	                      "type": "image",
-	                      "attr": {
-	                        "src": function () {return this.$item.imgurl}
-	                      },
-	                      "classList": [
-	                        "swiper-img"
-	                      ]
-	                    }
-	                  ]
+	                  "type": "text",
+	                  "attr": {
+	                    "value": "暂无消息"
+	                  }
+	                }
+	              ]
+	            },
+	            {
+	              "type": "div",
+	              "attr": {
+	                "index": "2",
+	                "itemdata": function () {return this.list[2]},
+	                "currentIndex": function () {return this.currentIndex}
+	              },
+	              "children": [
+	                {
+	                  "type": "text",
+	                  "attr": {
+	                    "value": "我的用户中心"
+	                  }
 	                }
 	              ]
 	            }
 	          ]
-	        }
-	      ]
-	    },
-	    {
-	      "type": "div",
-	      "attr": {},
-	      "classList": [
-	        "container"
-	      ],
-	      "children": [
+	        },
 	        {
-	          "type": "list",
-	          "attr": {},
-	          "classList": [
-	            "publish-list"
-	          ],
-	          "events": {
-	            "scrollbottom": "loadMoreData"
+	          "type": "tab-bar",
+	          "attr": {
+	            "mode": "fixed"
 	          },
+	          "classList": [
+	            "tab-bar"
+	          ],
 	          "children": [
 	            {
-	              "type": "block",
+	              "type": "div",
 	              "attr": {},
-	              "repeat": function () {return this.funnyList},
+	              "classList": [
+	                "tab-bar-item"
+	              ],
 	              "children": [
 	                {
-	                  "type": "list-item",
-	                  "attr": {},
-	                  "classList": [
-	                    "publish-list-item"
-	                  ],
-	                  "children": [
-	                    {
-	                      "type": "div",
-	                      "attr": {},
-	                      "classList": [
-	                        "publish-info"
-	                      ],
-	                      "children": [
-	                        {
-	                          "type": "div",
-	                          "attr": {},
-	                          "classList": [
-	                            "publish-head"
-	                          ],
-	                          "children": [
-	                            {
-	                              "type": "image",
-	                              "attr": {
-	                                "src": function () {return this.$item.headImg}
-	                              },
-	                              "classList": [
-	                                "publisher-head-img"
-	                              ]
-	                            }
-	                          ]
-	                        },
-	                        {
-	                          "type": "div",
-	                          "attr": {},
-	                          "classList": [
-	                            "base-info"
-	                          ],
-	                          "children": [
-	                            {
-	                              "type": "text",
-	                              "attr": {
-	                                "value": function () {return this.$item.nickName}
-	                              },
-	                              "classList": [
-	                                "nickName"
-	                              ]
-	                            },
-	                            {
-	                              "type": "text",
-	                              "attr": {
-	                                "value": function () {return this.$item.publishTime}
-	                              },
-	                              "classList": [
-	                                "publish-time"
-	                              ]
-	                            }
-	                          ]
-	                        }
-	                      ]
-	                    }
-	                  ]
+	                  "type": "image",
+	                  "attr": {
+	                    "src": function () {return '/Common/images/smile' + (this.currentIndex==0?'Active':'') + '.png'}
+	                  }
+	                },
+	                {
+	                  "type": "text",
+	                  "attr": {
+	                    "value": "开心一刻"
+	                  },
+	                  "classList": function () {return [this.currentIndex==0?'tabbar-active':'']}
+	                }
+	              ]
+	            },
+	            {
+	              "type": "div",
+	              "attr": {},
+	              "classList": [
+	                "tab-bar-item"
+	              ],
+	              "children": [
+	                {
+	                  "type": "image",
+	                  "attr": {
+	                    "src": function () {return '/Common/images/message' + (this.currentIndex==1?'Active':'') + '.png'}
+	                  }
+	                },
+	                {
+	                  "type": "text",
+	                  "attr": {
+	                    "value": "消息"
+	                  },
+	                  "classList": function () {return [this.currentIndex==1?'tabbar-active':'']}
+	                }
+	              ]
+	            },
+	            {
+	              "type": "div",
+	              "attr": {},
+	              "classList": [
+	                "tab-bar-item"
+	              ],
+	              "children": [
+	                {
+	                  "type": "image",
+	                  "attr": {
+	                    "src": function () {return '/Common/images/my' + (this.currentIndex==2?'Active':'') + '.png'}
+	                  }
+	                },
+	                {
+	                  "type": "text",
+	                  "attr": {
+	                    "value": "我的"
+	                  },
+	                  "classList": function () {return [this.type==2?'currentIndex':'']}
 	                }
 	              ]
 	            }
@@ -225,20 +230,33 @@
 	    "justifyContent": "flex-start",
 	    "backgroundColor": "rgba(189,189,189,0.52)"
 	  },
-	  ".header": {
-	    "paddingTop": "0px",
-	    "paddingRight": "0px",
-	    "paddingBottom": "0px",
-	    "paddingLeft": "0px",
-	    "marginTop": "0px",
-	    "marginRight": "0px",
-	    "marginBottom": "0px",
-	    "marginLeft": "0px",
+	  "tabs": {
+	    "width": "100%",
+	    "height": "100%"
+	  },
+	  ".tab-content": {
 	    "width": "100%"
 	  },
-	  ".header swiper": {
-	    "width": "750px",
-	    "height": "240px",
+	  ".tab-bar": {
+	    "backgroundColor": "#011e29",
+	    "display": "flex",
+	    "flexDirection": "row",
+	    "justifyContent": "center",
+	    "height": "100px",
+	    "width": "750px"
+	  },
+	  ".tab-bar-item": {
+	    "width": "250px",
+	    "height": "100px",
+	    "display": "flex",
+	    "flexDirection": "column",
+	    "justifyContent": "center",
+	    "alignItems": "center"
+	  },
+	  ".tab-bar image": {
+	    "width": "50px",
+	    "height": "50px",
+	    "lineHeight": "70px",
 	    "_meta": {
 	      "ruleDef": [
 	        {
@@ -246,104 +264,22 @@
 	          "n": "class",
 	          "i": false,
 	          "a": "element",
-	          "v": "header"
+	          "v": "tab-bar"
 	        },
 	        {
 	          "t": "d"
 	        },
 	        {
 	          "t": "t",
-	          "n": "swiper"
+	          "n": "image"
 	        }
 	      ]
 	    }
 	  },
-	  ".swiper-item": {
-	    "width": "750px",
-	    "height": "240px"
-	  },
-	  ".swiper-img": {
-	    "width": "750px",
-	    "height": "240px"
-	  },
-	  ".swiper-title": {
-	    "width": "100%",
-	    "bottom": "10px",
-	    "left": "20px",
-	    "zIndex": 1,
-	    "color": "#000000"
-	  },
-	  ".container": {
-	    "paddingTop": "0px",
-	    "paddingRight": "0px",
-	    "paddingBottom": "0px",
-	    "paddingLeft": "0px",
-	    "marginTop": "0px",
-	    "marginRight": "0px",
-	    "marginBottom": "0px",
-	    "marginLeft": "0px",
-	    "width": "100%"
-	  },
-	  ".publish-list-item": {
-	    "paddingTop": "10px",
-	    "paddingRight": "20px",
-	    "paddingBottom": "10px",
-	    "paddingLeft": "20px",
-	    "marginTop": "14px",
-	    "marginRight": "0px",
-	    "marginBottom": "0px",
-	    "marginLeft": "0px",
-	    "width": "100%",
-	    "backgroundColor": "#ffffff"
-	  },
-	  ".publish-info": {
-	    "paddingTop": "0px",
-	    "paddingRight": "0px",
-	    "paddingBottom": "0px",
-	    "paddingLeft": "0px",
-	    "marginTop": "0px",
-	    "marginRight": "0px",
-	    "marginBottom": "0px",
-	    "marginLeft": "0px",
-	    "width": "100%"
-	  },
-	  ".publish-list": {
-	    "height": "100%"
-	  },
-	  ".publisher-info": {
-	    "height": "100px",
-	    "boxSizing": "border-box",
-	    "display": "flex",
-	    "flexDirection": "row"
-	  },
-	  ".publish-head": {
-	    "height": "100%",
-	    "paddingTop": "10px",
-	    "paddingRight": "20px",
-	    "paddingBottom": "10px",
-	    "paddingLeft": "0px",
-	    "boxSizing": "border-box"
-	  },
-	  ".publisher-head-img": {
-	    "width": "80px",
-	    "height": "80px",
-	    "borderRadius": "50px",
-	    "verticalAlign": "middle"
-	  },
-	  ".base-info": {
-	    "height": "100%",
-	    "width": "550px",
-	    "paddingTop": "10px",
-	    "paddingRight": "0px",
-	    "paddingBottom": "10px",
-	    "paddingLeft": "0px",
-	    "boxSizing": "border-box"
-	  },
-	  ".base-info text": {
-	    "width": "100%",
-	    "height": "100px",
-	    "lineHeight": "40px",
-	    "float": "left",
+	  ".tab-bar-item text": {
+	    "fontSize": "20px",
+	    "lineHeight": "30px",
+	    "color": "#ffffff",
 	    "_meta": {
 	      "ruleDef": [
 	        {
@@ -351,7 +287,7 @@
 	          "n": "class",
 	          "i": false,
 	          "a": "element",
-	          "v": "base-info"
+	          "v": "tab-bar-item"
 	        },
 	        {
 	          "t": "d"
@@ -363,22 +299,29 @@
 	      ]
 	    }
 	  },
-	  ".nickName": {
-	    "fontSize": "30px",
-	    "color": "#ff6c00"
-	  },
-	  ".publish-time": {
-	    "color": "#4CAF50",
-	    "fontSize": "24px"
-	  },
-	  ".btn": {
-	    "width": "550px",
-	    "height": "86px",
-	    "marginTop": "75px",
-	    "borderRadius": "43px",
-	    "backgroundColor": "#09ba07",
-	    "fontSize": "30px",
-	    "color": "#ffffff"
+	  ".tab-bar-item .tabbar-active": {
+	    "color": "#1296db",
+	    "_meta": {
+	      "ruleDef": [
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "tab-bar-item"
+	        },
+	        {
+	          "t": "d"
+	        },
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "tabbar-active"
+	        }
+	      ]
+	    }
 	  }
 	}
 
@@ -402,6 +345,9 @@
 	
 	exports.default = {
 	    private: {
+	        currentIndex: 0,
+	        list: [],
+	        indexDate: {},
 	        title: '示例页面',
 	        newEvents: [{
 	            id: 'sp0001',
@@ -413,7 +359,7 @@
 	            title: "别人家的..."
 	        }, {
 	            id: 'sp0003',
-	            imgurl: "https://raw.githubusercontent.com/wxmid/happyTime/master/assets/img/swiper3.jpg",
+	            imgurl: "/Common/images/swiper3.jpg",
 	            title: "是不是有点冷..."
 	        }],
 	        funnyList: [{
@@ -466,15 +412,24 @@
 	            thumbnailList: ['/Common/images/gx13.jpg', '/Common/images/gx14.jpg', '/Common/images/gx15.jpg']
 	        }]
 	    },
+	    onInit: function onInit() {
+	        this.indexDate = {
+	            newEvents: this.newEvents,
+	            funnyList: this.funnyList
+	        };
+	    },
 	    routeDetail: function routeDetail() {
 	        _system2.default.push({
 	            uri: '/DemoDetail'
 	        });
 	    },
+	    onChangeTabIndex: function onChangeTabIndex(evt) {
+	        console.info(evt);
+	        this.currentIndex = evt.index;
+	    },
 	    onReady: function onReady() {
 	        this.title = '首页';
-	    },
-	    loadMoreData: function loadMoreData() {}
+	    }
 	};
 	
 	
@@ -500,6 +455,455 @@
 	        }
 	    });
 	}}
+
+/***/ },
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var $app_template$ = __webpack_require__(17)
+	var $app_style$ = __webpack_require__(18)
+	var $app_script$ = __webpack_require__(19)
+	
+	$app_define$('@app-component/index-page', [], function($app_require$, $app_exports$, $app_module$){
+	     $app_script$($app_module$, $app_exports$, $app_require$)
+	     if ($app_exports$.__esModule && $app_exports$.default) {
+	            $app_module$.exports = $app_exports$.default
+	        }
+	     $app_module$.exports.template = $app_template$
+	     $app_module$.exports.style = $app_style$
+	})
+
+
+/***/ },
+/* 17 */
+/***/ function(module, exports) {
+
+	module.exports = {
+	  "type": "div",
+	  "attr": {},
+	  "classList": [
+	    "demo-page"
+	  ],
+	  "children": [
+	    {
+	      "type": "div",
+	      "attr": {},
+	      "classList": [
+	        "home-page"
+	      ],
+	      "children": [
+	        {
+	          "type": "div",
+	          "attr": {},
+	          "classList": [
+	            "header"
+	          ],
+	          "children": [
+	            {
+	              "type": "swiper",
+	              "attr": {},
+	              "children": [
+	                {
+	                  "type": "block",
+	                  "attr": {},
+	                  "repeat": function () {return this.indexDate.newEvents},
+	                  "children": [
+	                    {
+	                      "type": "div",
+	                      "attr": {
+	                        "backgroundImage": function () {return this.$item.imgurl}
+	                      },
+	                      "classList": [
+	                        "swiper-item"
+	                      ],
+	                      "children": [
+	                        {
+	                          "type": "text",
+	                          "attr": {
+	                            "value": function () {return this.$item.title}
+	                          },
+	                          "classList": [
+	                            "swiper-title"
+	                          ]
+	                        }
+	                      ]
+	                    }
+	                  ]
+	                }
+	              ]
+	            }
+	          ]
+	        },
+	        {
+	          "type": "div",
+	          "attr": {},
+	          "classList": [
+	            "container"
+	          ],
+	          "children": [
+	            {
+	              "type": "list",
+	              "attr": {},
+	              "classList": [
+	                "publish-list"
+	              ],
+	              "events": {
+	                "scrollbottom": "loadMoreData"
+	              },
+	              "children": [
+	                {
+	                  "type": "block",
+	                  "attr": {},
+	                  "repeat": function () {return this.indexDate.funnyList},
+	                  "children": [
+	                    {
+	                      "type": "list-item",
+	                      "attr": {
+	                        "type": "funnyItem"
+	                      },
+	                      "classList": [
+	                        "publish-list-item"
+	                      ],
+	                      "children": [
+	                        {
+	                          "type": "div",
+	                          "attr": {},
+	                          "classList": [
+	                            "publish-info"
+	                          ],
+	                          "children": [
+	                            {
+	                              "type": "div",
+	                              "attr": {},
+	                              "classList": [
+	                                "publish-head"
+	                              ],
+	                              "children": [
+	                                {
+	                                  "type": "image",
+	                                  "attr": {
+	                                    "src": function () {return this.$item.headImg}
+	                                  },
+	                                  "classList": [
+	                                    "publisher-head-img"
+	                                  ]
+	                                }
+	                              ]
+	                            },
+	                            {
+	                              "type": "div",
+	                              "attr": {},
+	                              "classList": [
+	                                "base-info"
+	                              ],
+	                              "children": [
+	                                {
+	                                  "type": "text",
+	                                  "attr": {
+	                                    "value": function () {return this.$item.nickName}
+	                                  },
+	                                  "classList": [
+	                                    "nickName"
+	                                  ]
+	                                },
+	                                {
+	                                  "type": "text",
+	                                  "attr": {
+	                                    "value": function () {return this.$item.publishTime}
+	                                  },
+	                                  "classList": [
+	                                    "publish-time"
+	                                  ]
+	                                }
+	                              ]
+	                            },
+	                            {
+	                              "type": "div",
+	                              "attr": {},
+	                              "classList": [
+	                                "original"
+	                              ],
+	                              "children": [
+	                                {
+	                                  "type": "image",
+	                                  "attr": {
+	                                    "src": "/Common/images/original.png"
+	                                  }
+	                                },
+	                                {
+	                                  "type": "text",
+	                                  "attr": {
+	                                    "value": "原创"
+	                                  }
+	                                }
+	                              ]
+	                            }
+	                          ]
+	                        }
+	                      ]
+	                    }
+	                  ]
+	                }
+	              ]
+	            }
+	          ]
+	        }
+	      ]
+	    }
+	  ]
+	}
+
+/***/ },
+/* 18 */
+/***/ function(module, exports) {
+
+	module.exports = {
+	  ".home-page": {
+	    "width": "100%",
+	    "display": "flex",
+	    "flexDirection": "column"
+	  },
+	  ".header": {
+	    "paddingTop": "0px",
+	    "paddingRight": "0px",
+	    "paddingBottom": "0px",
+	    "paddingLeft": "0px",
+	    "marginTop": "0px",
+	    "marginRight": "0px",
+	    "marginBottom": "0px",
+	    "marginLeft": "0px",
+	    "width": "100%"
+	  },
+	  ".header swiper": {
+	    "width": "750px",
+	    "height": "240px",
+	    "_meta": {
+	      "ruleDef": [
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "header"
+	        },
+	        {
+	          "t": "d"
+	        },
+	        {
+	          "t": "t",
+	          "n": "swiper"
+	        }
+	      ]
+	    }
+	  },
+	  ".swiper-item": {
+	    "width": "750px",
+	    "height": "240px",
+	    "display": "flex",
+	    "flexBasis": "100%"
+	  },
+	  ".swiper-title": {
+	    "height": "20px",
+	    "lineHeight": "20px",
+	    "fontSize": "20px",
+	    "color": "#ffffff",
+	    "paddingLeft": "50px",
+	    "marginTop": "160px"
+	  },
+	  ".container": {
+	    "paddingTop": "0px",
+	    "paddingRight": "0px",
+	    "paddingBottom": "0px",
+	    "paddingLeft": "0px",
+	    "marginTop": "0px",
+	    "marginRight": "0px",
+	    "marginBottom": "0px",
+	    "marginLeft": "0px",
+	    "width": "100%"
+	  },
+	  ".publish-list-item": {
+	    "paddingTop": "10px",
+	    "paddingRight": "20px",
+	    "paddingBottom": "10px",
+	    "paddingLeft": "20px",
+	    "marginTop": "14px",
+	    "marginRight": "0px",
+	    "marginBottom": "0px",
+	    "marginLeft": "0px",
+	    "width": "100%",
+	    "backgroundColor": "#ffffff"
+	  },
+	  ".publish-info": {
+	    "paddingTop": "0px",
+	    "paddingRight": "0px",
+	    "paddingBottom": "0px",
+	    "paddingLeft": "0px",
+	    "marginTop": "0px",
+	    "marginRight": "0px",
+	    "marginBottom": "0px",
+	    "marginLeft": "0px",
+	    "width": "100%",
+	    "backgroundColor": "#ffffff",
+	    "height": "100px"
+	  },
+	  ".publish-list": {
+	    "height": "100%"
+	  },
+	  ".publish-head": {
+	    "height": "100%",
+	    "paddingTop": "10px",
+	    "paddingRight": "20px",
+	    "paddingBottom": "10px",
+	    "paddingLeft": "0px"
+	  },
+	  ".publisher-head-img": {
+	    "width": "80px",
+	    "height": "80px",
+	    "borderRadius": "40px"
+	  },
+	  ".base-info": {
+	    "display": "flex",
+	    "flexDirection": "column",
+	    "height": "100px",
+	    "width": "550px",
+	    "paddingTop": "10px",
+	    "paddingRight": "0px",
+	    "paddingBottom": "10px",
+	    "paddingLeft": "0px"
+	  },
+	  ".base-info text": {
+	    "width": "100%",
+	    "height": "100px",
+	    "lineHeight": "40px",
+	    "_meta": {
+	      "ruleDef": [
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "base-info"
+	        },
+	        {
+	          "t": "d"
+	        },
+	        {
+	          "t": "t",
+	          "n": "text"
+	        }
+	      ]
+	    }
+	  },
+	  ".nickName": {
+	    "fontSize": "30px",
+	    "color": "#ff6c00"
+	  },
+	  ".publish-time": {
+	    "color": "#4CAF50",
+	    "fontSize": "24px"
+	  },
+	  ".original": {
+	    "width": "60px",
+	    "height": "100px",
+	    "display": "flex",
+	    "flexDirection": "column",
+	    "justifyContent": "center"
+	  },
+	  ".original image": {
+	    "paddingTop": "0px",
+	    "paddingRight": "5px",
+	    "paddingBottom": "0px",
+	    "paddingLeft": "5px",
+	    "width": "60px",
+	    "height": "50px",
+	    "_meta": {
+	      "ruleDef": [
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "original"
+	        },
+	        {
+	          "t": "d"
+	        },
+	        {
+	          "t": "t",
+	          "n": "image"
+	        }
+	      ]
+	    }
+	  },
+	  ".original text": {
+	    "textAlign": "center",
+	    "width": "60px",
+	    "fontSize": "18px",
+	    "_meta": {
+	      "ruleDef": [
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "original"
+	        },
+	        {
+	          "t": "d"
+	        },
+	        {
+	          "t": "t",
+	          "n": "text"
+	        }
+	      ]
+	    }
+	  }
+	}
+
+/***/ },
+/* 19 */
+/***/ function(module, exports) {
+
+	module.exports = function(module, exports, $app_require$){"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _system = $app_require$("@app-module/system.router");
+	
+	var _system2 = _interopRequireDefault(_system);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	    props: ["indexDate"],
+	
+	    private: {},
+	    onCreate: function onCreate() {
+	        console.info(this.indexDate);
+	    },
+	    data: function data() {},
+	    loadMoreData: function loadMoreData() {},
+	    onInit: function onInit() {
+	        console.info(this.dataObj);
+	    },
+	    onShow: function onShow() {},
+	    onReady: function onReady() {},
+	    onMenuPress: function onMenuPress() {
+	        this.$def.showMenu();
+	    },
+	    onDestroy: function onDestroy() {},
+	    onBackPress: function onBackPress() {},
+	    backToHome: function backToHome() {},
+	    onHide: function onHide() {}
+	};}
 
 /***/ }
 /******/ ]);

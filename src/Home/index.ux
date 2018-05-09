@@ -1,137 +1,77 @@
+<import name="index-page" src="../Index"></import>
 <template>
   <!-- template里只能有一个根节点 -->
   <div class="demo-page">
-      <div class="header">
-          <swiper>
-              <block for="{{newEvents}}">
-                  <div class="swiper-item">
-                      <image class="swiper-img" src="{{$item.imgurl}}"></image>
-                      <!--<text class="swiper-title">{{$item.title}}</text>-->
-                  </div>
-              </block>
-          </swiper>
-      </div>
-      
-      <div class="container">
-          <list class="publish-list" onscrollbottom="loadMoreData">
-              <block for="{{funnyList}}">
-                  <list-item class="publish-list-item">
-                      <div class="publish-info">
-                          <div class="publish-head">
-                              <image class="publisher-head-img" src="{{$item.headImg}}"></image>
-                          </div>
-                          <div class="base-info">
-                              <text class='nickName'>{{$item.nickName}}</text>
-                              <text class='publish-time'>{{$item.publishTime}}</text>
-                          </div>
-                      </div>
-                  </list-item>
-              </block>
-          </list>
-      </div>
-      
-      
-    <!-- 点击跳转详情页 -->
-    <!--<input class="btn" type="button" value="跳转到详情页" onclick="routeDetail" />-->
+      <tabs onchange="onChangeTabIndex">
+          <tab-content class="tab-content">
+              <index-page index="0" index-date="{{indexDate}}" current-index="{{currentIndex}}"></index-page>
+              <div index="1" itemdata="{{list[1]}}" current-index="{{currentIndex}}">
+                  <text>暂无消息</text>
+              </div>
+              <div index="2" itemdata="{{list[2]}}" current-index="{{currentIndex}}">
+                  <text>我的用户中心</text>
+              </div>
+          </tab-content>
+          <tab-bar mode="fixed" class="tab-bar">
+              <div class="tab-bar-item">
+                  <image src="/Common/images/smile{{currentIndex == 0 ? 'Active' : ''}}.png"></image>
+                  <text class="{{currentIndex == 0 ? 'tabbar-active' : ''}}">开心一刻</text>
+              </div>
+              <div class="tab-bar-item">
+                  <image src="/Common/images/message{{currentIndex == 1 ? 'Active' : ''}}.png"></image>
+                  <text class="{{currentIndex == 1 ? 'tabbar-active' : ''}}">消息</text>
+              </div>
+              <div class="tab-bar-item">
+                  <image src="/Common/images/my{{currentIndex == 2 ? 'Active' : ''}}.png"></image>
+                  <text class="{{type == 2 ? 'currentIndex' : ''}}">我的</text>
+              </div>
+          </tab-bar>
+      </tabs>
   </div>
 </template>
 
 <style>
   .demo-page {
-    /*display: flex;*/
     flex-direction:column;
     flex-wrap: nowrap;
     justify-content:flex-start;
     background-color:rgba(189, 189, 189, 0.52)
   }
-  .header {
-      padding:0;
-      margin: 0;
+  tabs {
       width: 100%;
-      /*position: relative;*/
-      /*padding-bottom:50px;*/
-  }
-  .header swiper,.swiper-item, .swiper-img {
-      width: 750px;
-      height:240px;
-  }
- .swiper-title {
-     width:100%;
-     position: absolute;
-     bottom: 10px;
-     left: 20px;
-     z-index: 1;
-     color: #000000;
- }
-  .container,.publish-list-item,.publish-info {
-      padding:0;
-      margin: 0;
-      width:100%;
-  }
-  .publish-list {
       height:100%;
   }
-  .publish-list-item {
-      margin-top:14px;
-      padding:10px 20px;
-      background-color: #ffffff;
+  .tab-content {
+      width:100%;
   }
-  .publisher-info {
-      background:#fff;
-      height:100px;
-      box-sizing:border-box;
-      display:flex;
+  .tab-bar {
+      background-color: #011e29;
+      display: flex;
       flex-direction:row;
+      justify-content:center;
+      height: 100px;
+      width: 750px;
   }
-  .publish-head {
-      height:100%;
-      padding:10px 0;
-      padding-right:20px;
-      box-sizing:border-box;
+  .tab-bar-item {
+      width: 250px;
+      height: 100px;
+      display: flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
   }
-  .publisher-head-img {
-      width:80px;
-      height:80px;
-      border-radius: 50% 50%;
-      vertical-align: middle;
+  .tab-bar image {
+      width:50px;
+      height: 50px;
+      line-height: 70px;
   }
-  .base-info {
-      display: inline-block;
-      height: 100%;
-      width: 550px;
-      padding: 10px 0;
-      box-sizing: border-box;
+  .tab-bar-item text {
+      font-size: 20px;
+      line-height: 30px;
+      color: #ffffff;
   }
-  .base-info text {
-      display: inline-block;
-      width:100%;
-      height:100px;
-      line-height: 40px;
-      float: left;
-  }
-  .nickName {
-      font-size: 30px;
-      color: #ff6c00;
-  }
-  .publish-time {
-      color: #4CAF50;
-      font-size: 24px;
-  }
-  
-  
-  
-  
-  
-  
-
-  .btn {
-    width: 550px;
-    height: 86px;
-    margin-top: 75px;
-    border-radius: 43px;
-    background-color: #09ba07;
-    font-size: 30px;
-    color: #ffffff;
+  .tab-bar-item .tabbar-active {
+      color: #1296db;
   }
 </style>
 
@@ -141,6 +81,9 @@
   export default {
     // 页面级组件的数据模型，影响传入数据的覆盖机制：private内定义的属性不允许被覆盖
     private: {
+        currentIndex:0,
+        list:[],
+        indexDate:{},
       title: '示例页面',
         newEvents:[
             {
@@ -155,7 +98,7 @@
             },
             {
                 id: 'sp0003',
-                imgurl: "https://raw.githubusercontent.com/wxmid/happyTime/master/assets/img/swiper3.jpg",
+                imgurl: "/Common/images/swiper3.jpg",
                 title: "是不是有点冷..."
             }
         ],
@@ -237,17 +180,25 @@
             }
         ]
     },
+      onInit() {
+        this.indexDate = {
+            newEvents:this.newEvents,
+            funnyList:this.funnyList
+        }
+      },
     routeDetail () {
       // 跳转到应用内的某个页面，router用法详见：文档->接口->页面路由
       router.push ({
         uri: '/DemoDetail'
       })
     },
+      onChangeTabIndex (evt) {
+        console.info(evt);
+          this.currentIndex = evt.index
+  },
     onReady () {
       this.title = '首页'
       },
-      loadMoreData() {
       
-      }
   }
 </script>

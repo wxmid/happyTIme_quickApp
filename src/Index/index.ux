@@ -1,0 +1,183 @@
+<template>
+    <!-- template里只能有一个根节点 -->
+    <div class="demo-page">
+        <div class="home-page">
+            <div class="header">
+                <swiper>
+                    <block for="{{indexDate.newEvents}}">
+                        <div class="swiper-item" background-image="{{$item.imgurl}}">
+                            <!--<image class="swiper-img" src="{{$item.imgurl}}"></image>-->
+                            <text class="swiper-title">{{$item.title}}</text>
+                        </div>
+                    </block>
+                </swiper>
+            </div>
+        
+            <div class="container">
+                <list class="publish-list" onscrollbottom="loadMoreData">
+                    <block for="{{indexDate.funnyList}}">
+                        <list-item type="funnyItem" class="publish-list-item">
+                            <div class="publish-info">
+                                <div class="publish-head">
+                                    <image class="publisher-head-img" src="{{$item.headImg}}"></image>
+                                </div>
+                                <div class="base-info">
+                                    <text class='nickName'>{{$item.nickName}}</text>
+                                    <text class='publish-time'>{{$item.publishTime}}</text>
+                                </div>
+                                <div class='original'>
+                                    <image src='/Common/images/original.png'></image>
+                                    <text>原创</text>
+                                </div>
+                            </div>
+                        </list-item>
+                    </block>
+                    <!--<list-item type="loadMore" class="load-more">
+                        <progress type="circular"></progress>
+                        <text>加载更多</text>
+                    </list-item>-->
+                </list>
+            </div>
+        </div>
+    </div>
+</template>
+
+<style>
+    .home-page {
+        width: 100%;
+        display: flex;
+        flex-direction:column;
+    }
+    .header {
+        padding:0;
+        margin: 0;
+        width: 100%;
+    }
+    .header swiper,.swiper-item{
+        width: 750px;
+        height:240px;
+    }
+    .swiper-item {
+        display: flex;
+        flex-basis:100%;
+    }
+    .swiper-title {
+        height: 20px;
+        line-height: 20px;
+        font-size: 20px;
+        /*align-self: flex-end;*/
+        color: #ffffff;
+        padding-left:50px;
+        margin-top:160px;
+    }
+    .container,.publish-list-item,.publish-info {
+        padding:0;
+        margin: 0;
+        width:100%;
+    }
+    .publish-list {
+        height:100%;
+    }
+    .publish-list-item {
+        margin-top:14px;
+        padding:10px 20px;
+        background-color: #ffffff;
+    }
+    .publish-info {
+        background-color:#ffffff;
+        height:100px;
+    }
+    .publish-head {
+        height:100%;
+        padding:10px 0;
+        padding-right:20px;
+    }
+    .publisher-head-img {
+        width:80px;
+        height:80px;
+        border-radius: 40px;
+    }
+    .base-info {
+        display: flex;
+        flex-direction:column;
+        height: 100px;
+        width: 550px;
+        padding: 10px 0;
+    }
+    .base-info text {
+        width:100%;
+        height:100px;
+        line-height: 40px;
+    }
+    .nickName {
+        font-size: 30px;
+        color: #ff6c00;
+    }
+    .publish-time {
+        color: #4CAF50;
+        font-size: 24px;
+    }
+    .original {
+        width:60px;
+        height:100px;
+        display: flex;
+        flex-direction:column;
+        justify-content:center;
+    }
+    .original image {
+        padding:0 5px;
+        width:60px;
+        height:50px;
+    }
+    .original text{
+        text-align: center;
+        width:60px;
+        font-size:18px;
+    }
+</style>
+
+<script>
+    import router from '@system.router'
+    
+    export default {
+        props:[
+            "indexDate"
+        ],
+        
+        private: {},
+        onCreate() {
+            console.info(this.indexDate);
+        },
+        data() {
+        
+        },
+        loadMoreData() {
+        
+        },
+        onInit () {
+          console.info(this.dataObj);
+        },
+        onShow() {
+            
+        },
+        onReady() {
+            
+        },
+        onMenuPress() {
+            this.$def.showMenu()
+        },
+        onDestroy() {
+            
+        },
+        onBackPress() {
+            
+        },
+        backToHome() {
+            
+        },
+        onHide() {
+            
+        },
+        
+    }
+</script>
