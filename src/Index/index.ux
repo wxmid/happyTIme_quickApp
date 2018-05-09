@@ -5,9 +5,9 @@
             <div class="header">
                 <swiper>
                     <block for="{{indexDate.newEvents}}">
-                        <div class="swiper-item" background-image="{{$item.imgurl}}">
-                            <!--<image class="swiper-img" src="{{$item.imgurl}}"></image>-->
-                            <text class="swiper-title">{{$item.title}}</text>
+                        <div class="swiper-item">
+                            <image class="swiper-img" src="{{$item.imgurl}}"></image>
+                            <!--<text class="swiper-title">{{$item.title}}</text>-->
                         </div>
                     </block>
                 </swiper>
@@ -60,6 +60,9 @@
     .swiper-item {
         display: flex;
         flex-basis:100%;
+    }
+    .swiper-img {
+        width:100%;
     }
     .swiper-title {
         height: 20px;

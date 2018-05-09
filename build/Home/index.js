@@ -48,9 +48,9 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(16)
-	var $app_template$ = __webpack_require__(7)
-	var $app_style$ = __webpack_require__(8)
-	var $app_script$ = __webpack_require__(9)
+	var $app_template$ = __webpack_require__(11)
+	var $app_style$ = __webpack_require__(12)
+	var $app_script$ = __webpack_require__(13)
 	
 	$app_define$('@app-component/index', [], function($app_require$, $app_exports$, $app_module$){
 	     $app_script$($app_module$, $app_exports$, $app_require$)
@@ -71,7 +71,11 @@
 /* 4 */,
 /* 5 */,
 /* 6 */,
-/* 7 */
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -220,7 +224,7 @@
 	}
 
 /***/ },
-/* 8 */
+/* 12 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -326,7 +330,7 @@
 	}
 
 /***/ },
-/* 9 */
+/* 13 */
 /***/ function(module, exports) {
 
 	module.exports = function(module, exports, $app_require$){'use strict';
@@ -457,10 +461,6 @@
 	}}
 
 /***/ },
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
 /* 14 */,
 /* 15 */,
 /* 16 */
@@ -516,20 +516,18 @@
 	                  "children": [
 	                    {
 	                      "type": "div",
-	                      "attr": {
-	                        "backgroundImage": function () {return this.$item.imgurl}
-	                      },
+	                      "attr": {},
 	                      "classList": [
 	                        "swiper-item"
 	                      ],
 	                      "children": [
 	                        {
-	                          "type": "text",
+	                          "type": "image",
 	                          "attr": {
-	                            "value": function () {return this.$item.title}
+	                            "src": function () {return this.$item.imgurl}
 	                          },
 	                          "classList": [
-	                            "swiper-title"
+	                            "swiper-img"
 	                          ]
 	                        }
 	                      ]
@@ -707,6 +705,9 @@
 	    "height": "240px",
 	    "display": "flex",
 	    "flexBasis": "100%"
+	  },
+	  ".swiper-img": {
+	    "width": "100%"
 	  },
 	  ".swiper-title": {
 	    "height": "20px",
